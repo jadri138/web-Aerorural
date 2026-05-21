@@ -5,9 +5,22 @@ Web estática profesional para `aerorural.com`, preparada para subir directament
 ## Archivos
 
 - `index.html`: estructura, textos, SEO básico y formulario visual.
+- `servicios/`: página general de servicios.
+- `servicios/agricultura-precision/`: página específica de agricultura de precisión.
+- `servicios/seguimiento-cultivos/`: página específica de seguimiento de cultivos.
+- `servicios/fotografia-video-aereo/`: página específica de fotografía y vídeo aéreo.
+- `servicios/ganaderia-fincas/`: página específica de ganadería y control de fincas.
+- `servicios/gestion-cinegetica/`: página específica de gestión cinegética.
+- `servicios/inspecciones-rurales/`: página específica de inspecciones rurales.
+- `sectores/`: página por perfiles de cliente.
+- `sobre-mi/`: página de Guillermo Villalva y marca personal.
+- `proceso/`: página de método de trabajo.
+- `contacto/`: página de contacto y presupuesto.
 - `aviso-legal.html`: aviso legal con campos pendientes de completar.
 - `politica-privacidad.html`: política de privacidad orientativa.
 - `politica-cookies.html`: política de cookies y almacenamiento local.
+- `sitemap.xml`: mapa de URLs para buscadores.
+- `robots.txt`: reglas básicas de rastreo.
 - `style.css`: estilos responsive, layout, tarjetas, menú móvil y animaciones ligeras.
 - `script.js`: menú hamburguesa, aviso del formulario, aviso de cookies y animaciones al hacer scroll.
 - `assets/`: imagen hero y favicon.
@@ -53,7 +66,7 @@ Para conectarlo más adelante con Formspree u otro servicio:
 
 1. Entra por FTP/SFTP o el gestor de archivos de Hostinger.
 2. Abre la carpeta `public_html` del dominio `aerorural.com`.
-3. Sube `index.html`, `aviso-legal.html`, `politica-privacidad.html`, `politica-cookies.html`, `style.css`, `script.js`, `README.md` y la carpeta `assets`.
+3. Sube todos los archivos y carpetas del proyecto a `public_html`: `index.html`, páginas legales, `style.css`, `script.js`, `sitemap.xml`, `robots.txt`, `README.md`, `assets`, `servicios`, `sectores`, `sobre-mi`, `proceso` y `contacto`.
 4. Comprueba que `https://aerorural.com/` carga correctamente.
 
 El dominio `aerorural.es` debe configurarse desde Hostinger o el registrador para redirigir a `https://aerorural.com/`.

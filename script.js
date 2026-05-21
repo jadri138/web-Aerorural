@@ -1,3 +1,5 @@
+document.documentElement.classList.add("js-enabled");
+
 const header = document.querySelector("[data-header]");
 const menuToggle = document.querySelector(".menu-toggle");
 const navPanel = document.querySelector("#site-menu");
