@@ -4,6 +4,9 @@ const navPanel = document.querySelector("#site-menu");
 const form = document.querySelector("#contact-form");
 const formStatus = document.querySelector("#form-status");
 const year = document.querySelector("#year");
+const cookieNotice = document.querySelector("[data-cookie-notice]");
+const cookieAccept = document.querySelector("[data-cookie-accept]");
+const cookieStorageKey = "aerorural-cookie-notice";
 
 const closeMenu = () => {
   if (!menuToggle || !navPanel) return;
@@ -73,5 +76,29 @@ if (form && formStatus) {
     formStatus.textContent =
       "Formulario pendiente de conexión. Contacta por WhatsApp o email para recibir respuesta.";
     formStatus.classList.add("is-visible");
+  });
+}
+
+if (cookieNotice && cookieAccept) {
+  let hasAcceptedNotice = false;
+
+  try {
+    hasAcceptedNotice = localStorage.getItem(cookieStorageKey) === "accepted";
+  } catch (error) {
+    hasAcceptedNotice = false;
+  }
+
+  if (!hasAcceptedNotice) {
+    cookieNotice.hidden = false;
+  }
+
+  cookieAccept.addEventListener("click", () => {
+    try {
+      localStorage.setItem(cookieStorageKey, "accepted");
+    } catch (error) {
+      // If storage is blocked, closing the notice for this visit is enough.
+    }
+
+    cookieNotice.hidden = true;
   });
 }
