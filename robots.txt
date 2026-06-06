@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aerorural.com/sitemap.xml
+Sitemap: https://aerorural.es/sitemap.xml

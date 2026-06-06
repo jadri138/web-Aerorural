@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://aerorural.com/</loc></url>
-  <url><loc>https://aerorural.com/servicios/</loc></url>
-  <url><loc>https://aerorural.com/servicios/agricultura-precision/</loc></url>
-  <url><loc>https://aerorural.com/servicios/seguimiento-cultivos/</loc></url>
-  <url><loc>https://aerorural.com/servicios/fotografia-video-aereo/</loc></url>
-  <url><loc>https://aerorural.com/servicios/ganaderia-fincas/</loc></url>
-  <url><loc>https://aerorural.com/servicios/gestion-cinegetica/</loc></url>
-  <url><loc>https://aerorural.com/servicios/inspecciones-rurales/</loc></url>
-  <url><loc>https://aerorural.com/sectores/</loc></url>
-  <url><loc>https://aerorural.com/sobre-mi/</loc></url>
-  <url><loc>https://aerorural.com/proceso/</loc></url>
-  <url><loc>https://aerorural.com/contacto/</loc></url>
-  <url><loc>https://aerorural.com/aviso-legal.html</loc></url>
-  <url><loc>https://aerorural.com/politica-privacidad.html</loc></url>
-  <url><loc>https://aerorural.com/politica-cookies.html</loc></url>
+  <url><loc>https://aerorural.es/</loc><priority>1.0</priority></url>
+  <url><loc>https://aerorural.es/servicios/</loc><priority>0.9</priority></url>
+  <url><loc>https://aerorural.es/servicios/ganaderia-fincas/</loc><priority>0.9</priority></url>
+  <url><loc>https://aerorural.es/servicios/gestion-cinegetica/</loc><priority>0.7</priority></url>
+  <url><loc>https://aerorural.es/servicios/agricultura-precision/</loc><priority>0.6</priority></url>
+  <url><loc>https://aerorural.es/servicios/seguimiento-cultivos/</loc><priority>0.5</priority></url>
+  <url><loc>https://aerorural.es/servicios/inspecciones-rurales/</loc><priority>0.6</priority></url>
+  <url><loc>https://aerorural.es/sobre-mi/</loc><priority>0.8</priority></url>
+  <url><loc>https://aerorural.es/aviso-legal.html</loc><priority>0.2</priority></url>
+  <url><loc>https://aerorural.es/politica-privacidad.html</loc><priority>0.2</priority></url>
+  <url><loc>https://aerorural.es/politica-cookies.html</loc><priority>0.2</priority></url>
 </urlset>
