@@ -24,16 +24,24 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "ProfessionalService",
         "name": "Aerorural",
         "url": "https://aerorural.es/",
         "email": "info@aerorural.es",
         "telephone": "+34 600 000 000",
-        "areaServed": ["Huesca", "Zaragoza", "Navarra", "Pirineo aragonés"],
+        "areaServed": [
+          {"@type": "AdministrativeArea", "name": "Huesca"},
+          {"@type": "AdministrativeArea", "name": "Zaragoza"},
+          {"@type": "AdministrativeArea", "name": "Navarra"},
+          {"@type": "AdministrativeArea", "name": "Pirineo aragonés"}
+        ],
         "description": "Servicios con drones especializados en ganadería extensiva: recuento de animales, localización de ganado, revisión de fincas y control de puntos de agua en el Pirineo aragonés y prepirineo.",
-        "founder": {
+        "priceRange": "Bajo presupuesto",
+        "provider": {
           "@type": "Person",
-          "name": "Guillermo Villalva"
+          "name": "Guillermo Villalva",
+          "jobTitle": "Piloto de drones",
+          "knowsAbout": ["ganadería extensiva", "drones profesionales", "cámara térmica", "Pirineo aragonés"]
         }
       }
     </script>
