@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aerorural — Del monte a la industria. Trabajos con dron en Galicia</title>
+<meta name="description" content="Termografía e inspección técnica de instalaciones solares, eólicas e industriales. Servicios con dron para ganadería extensiva y prevención de incendios. Base en A Coruña, toda Galicia.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..400&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════════════
+   AERORURAL — prototipo de portada
+   Concepto: la paleta de la cámara térmica como firma de marca.
+   El mismo sensor que busca una vaca en el monte busca un punto
+   caliente en un panel. Eso une las dos mitades del negocio.
+   ══════════════════════════════════════════════════════════ */
+
+:root{
+  /* Base — verde gallego oscuro y piedra */
+  --monte-950:#0b1a12;
+  --monte-900:#0f2318;
+  --monte-700:#1d4029;
+  --granito:#6f736b;
+  --niebla:#f2f0ea;
+  --hueso:#faf8f3;
+  --tinta:#12160f;
+
+  /* Térmicos — rampa ironbow del sensor */
+  --frio:#241b4a;
+  --media:#8c2f5e;
+  --brasa:#d64500;
+  --brasa-alta:#f59300;
+  --calor:#ffd166;
+
+  --linea:rgba(18,22,15,.16);
+  --linea-oscura:rgba(255,255,255,.14);
+
+  --shell:min(1220px,92vw);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--hueso);
+  color:var(--tinta);
+  font-family:var(--serif);
+  font-size:1.0625rem;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* La rampa térmica como elemento gráfico recurrente */
+.rampa{
+  height:3px;
+  background:linear-gradient(90deg,var(--frio),var(--media),var(--brasa),var(--brasa-alta),var(--calor));
+}
+
+.shell{width:var(--shell);margin-inline:auto}
+
+/* ── Etiquetas de sección: sans, versalitas, tracking abierto ── */
+.kicker{
+  font-family:var(--sans);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--granito);
+  margin:0 0 1.1rem;
+}
+.kicker--calor{color:var(--brasa)}
+
+/* ══ CABECERA ══ */
+.cab{
+  position:sticky;top:0;z-index:50;
+  background:rgba(250,248,243,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--linea);
+}
+.cab__in{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:2rem;padding:.9rem 0;
+}
+.marca{
+  font-family:var(--sans);
+  font-weight:800;
+  font-size:1.15rem;
+  letter-spacing:-.02em;
+  display:flex;align-items:center;gap:.6rem;
+}
+.marca__punto{
+  width:10px;height:10px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,var(--calor),var(--brasa) 60%,var(--frio));
+}
+.menu{
+  display:flex;align-items:center;gap:1.9rem;
+  font-family:var(--sans);font-size:.9rem;font-weight:500;
+}
+.menu a{padding-block:.3rem;border-bottom:1px solid transparent}
+.menu a:hover{border-bottom-color:var(--brasa)}
+.menu__wa{
+  background:var(--monte-900);color:var(--hueso);
+  padding:.6rem 1.1rem;font-weight:600;
+}
+.menu__wa:hover{background:var(--brasa);border-bottom-color:transparent!important}
+
+/* ══ HERO ══ */
+.hero{
+  background:var(--monte-950);
+  color:var(--hueso);
+  padding:clamp(4rem,9vw,7.5rem) 0 0;
+  position:relative;overflow:hidden;
+}
+/* Sugerencia de firma térmica al fondo, sin foto */
+.hero::after{
+  content:"";position:absolute;inset:auto -10% -30% 40%;
+  height:70%;
+  background:radial-gradient(ellipse at center,rgba(214,69,0,.22),transparent 65%);
+  pointer-events:none;
+}
+.hero__in{position:relative;z-index:1}
+
+.hero__loc{
+  font-family:var(--sans);font-size:.74rem;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--calor);margin:0 0 2rem;
+}
+
+/* El titular: Archivo pesado, muy apretado, dos tonos */
+.hero h1{
+  font-family:var(--sans);
+  font-weight:800;
+  font-size:clamp(2.6rem,7.2vw,5.6rem);
+  line-height:.94;
+  letter-spacing:-.035em;
+  text-transform:uppercase;
+  margin:0 0 2rem;
+  max-width:15ch;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(92deg,var(--brasa-alta),var(--calor));
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+}
+
+.hero__cuerpo{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:end;
+  padding-bottom:clamp(3rem,6vw,5rem);
+}
+.hero__lead{
+  font-size:clamp(1.1rem,1.9vw,1.34rem);
+  line-height:1.55;
+  color:rgba(250,248,243,.82);
+  margin:0 0 1.4rem;
+  max-width:52ch;
+}
+.hero__remate{
+  font-family:var(--sans);
+  font-size:1.02rem;font-weight:600;
+  color:var(--calor);
+  margin:0;
+}
+.hero__acciones{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+
+.btn{
+  font-family:var(--sans);font-size:.94rem;font-weight:600;
+  padding:.95rem 1.6rem;
+  border:1px solid transparent;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.btn--calor{background:var(--brasa);color:#fff}
+.btn--calor:hover{background:var(--brasa-alta);color:var(--tinta)}
+.btn--linea{border-color:rgba(250,248,243,.4);color:var(--hueso)}
+.btn--linea:hover{border-color:var(--calor);color:var(--calor)}
+
+/* Ficha técnica: bloque tipo hoja de especificaciones */
+.ficha{
+  border:1px solid var(--linea-oscura);
+  padding:1.6rem 1.7rem;
+}
+.ficha dl{margin:0;display:grid;gap:1.05rem}
+.ficha dt{
+  font-family:var(--sans);font-size:.68rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--granito);margin-bottom:.15rem;
+}
+.ficha dd{
+  margin:0;font-size:1rem;color:var(--hueso);line-height:1.4;
+}
+
+/* ══ LAS DOS PUERTAS ══ */
+.puertas{border-top:1px solid var(--linea-oscura)}
+.puertas__in{
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.puerta{
+  padding:clamp(2.4rem,4.5vw,3.6rem) clamp(1.6rem,3vw,2.8rem);
+  display:flex;flex-direction:column;gap:.9rem;
+  position:relative;
+  transition:background .2s;
+}
+.puerta:first-child{border-right:1px solid var(--linea-oscura)}
+.puerta:hover{background:rgba(255,255,255,.04)}
+.puerta__num{
+  font-family:var(--serif);font-size:.9rem;
+  color:var(--granito);margin:0;
+}
+.puerta h2{
+  font-family:var(--sans);font-weight:700;
+  font-size:clamp(1.35rem,2.4vw,1.85rem);
+  letter-spacing:-.02em;line-height:1.1;
+  margin:0;color:var(--hueso);
+}
+.puerta p{
+  margin:0;color:rgba(250,248,243,.72);font-size:1rem;max-width:42ch;
+}
+.puerta__ir{
+  font-family:var(--sans);font-size:.88rem;font-weight:600;
+  color:var(--calor);margin-top:.5rem;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.puerta:hover .puerta__ir span{transform:translateX(4px)}
+.puerta__ir span{display:inline-block;transition:transform .18s}
+
+/* ══ SECCIONES CLARAS ══ */
+.sec{padding:clamp(4rem,8vw,7rem) 0}
+.sec--niebla{background:var(--niebla)}
+
+.sec__cab{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(1.5rem,4vw,3.5rem);
+  align-items:start;
+  margin-bottom:clamp(2.5rem,5vw,4rem);
+  padding-bottom:1.8rem;
+  border-bottom:1px solid var(--linea);
+}
+.sec__cab h2{
+  font-family:var(--sans);font-weight:700;
+  font-size:clamp(1.7rem,3.4vw,2.6rem);
+  line-height:1.06;letter-spacing:-.03em;
+  margin:0;
+}
+.sec__cab p{margin:0;color:#4a4f46;font-size:1.06rem;max-width:56ch}
+
+/* ── Servicios como filas de listado, no como tarjetas ── */
+.filas{border-top:1px solid var(--linea)}
+.fila{
+  display:grid;
+  grid-template-columns:4.5rem minmax(0,1fr) minmax(0,1.15fr);
+  gap:clamp(1rem,3vw,2.5rem);
+  padding:2.2rem 0;
+  border-bottom:1px solid var(--linea);
+  align-items:start;
+}
+.fila__n{
+  font-family:var(--serif);
+  font-size:1.9rem;line-height:1;
+  color:var(--brasa);
+  font-variant-numeric:oldstyle-nums;
+}
+.fila h3{
+  font-family:var(--sans);font-weight:600;
+  font-size:1.22rem;line-height:1.22;letter-spacing:-.015em;
+  margin:0;
+}
+.fila__desc{margin:0 0 1rem;color:#4a4f46}
+.fila__res{
+  margin:0;padding-left:1rem;
+  border-left:2px solid var(--brasa-alta);
+  font-family:var(--sans);font-size:.94rem;font-weight:500;
+  color:var(--tinta);
+}
+.fila__res b{
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  font-size:.72rem;color:var(--brasa);
+  display:block;margin-bottom:.15rem;
+}
+
+/* ══ ZONA DE TRABAJO ══ */
+.zona{
+  background:var(--monte-900);color:var(--hueso);
+}
+.zona__grid{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
+  gap:clamp(2rem,5vw,4.5rem);
+}
+.zona h2{
+  font-family:var(--sans);font-weight:700;
+  font-size:clamp(1.7rem,3.4vw,2.5rem);
+  letter-spacing:-.03em;line-height:1.06;margin:0 0 1.2rem;
+}
+.zona__intro{color:rgba(250,248,243,.78);margin:0}
+.anillos{display:grid;gap:0}
+.anillo{
+  padding:1.5rem 0;
+  border-top:1px solid var(--linea-oscura);
+  display:grid;grid-template-columns:9.5rem 1fr;gap:1.5rem;
+}
+.anillo:last-child{border-bottom:1px solid var(--linea-oscura)}
+.anillo dt{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--calor);
+  padding-top:.25rem;
+}
+.anillo dd{margin:0;color:rgba(250,248,243,.8)}
+
+/* ══ SOBRE MÍ ══ */
+.sobre__grid{
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:clamp(2rem,5vw,4rem);align-items:start;
+}
+.foto-hueco{
+  aspect-ratio:4/5;
+  border:1px solid var(--linea);
+  background:
+    repeating-linear-gradient(45deg,transparent,transparent 11px,rgba(18,22,15,.045) 11px,rgba(18,22,15,.045) 22px);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1.5rem;
+}
+.foto-hueco b{
+  font-family:var(--sans);font-size:.72rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brasa);
+}
+.foto-hueco span{font-size:.95rem;color:var(--granito)}
+.sobre h2{
+  font-family:var(--sans);font-weight:700;
+  font-size:clamp(1.7rem,3.4vw,2.5rem);
+  letter-spacing:-.03em;line-height:1.06;margin:0 0 1.4rem;
+}
+.sobre p{margin:0 0 1.1rem;font-size:1.09rem;max-width:58ch}
+.sobre__cert{
+  margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--linea);
+  display:flex;flex-wrap:wrap;gap:.55rem;
+}
+.cert{
+  font-family:var(--sans);font-size:.78rem;font-weight:600;
+  letter-spacing:.05em;
+  border:1px solid var(--linea);padding:.42rem .8rem;
+}
+
+/* ══ CIERRE ══ */
+.cierre{
+  background:var(--monte-950);color:var(--hueso);
+  padding:clamp(4rem,8vw,6.5rem) 0;text-align:left;
+}
+.cierre h2{
+  font-family:var(--sans);font-weight:800;
+  font-size:clamp(1.9rem,4.6vw,3.4rem);
+  letter-spacing:-.035em;line-height:1.02;text-transform:uppercase;
+  margin:0 0 1.3rem;max-width:20ch;
+}
+.cierre p{color:rgba(250,248,243,.78);max-width:50ch;margin:0 0 2rem;font-size:1.1rem}
+
+.pie{
+  background:var(--monte-950);color:rgba(250,248,243,.6);
+  border-top:1px solid var(--linea-oscura);
+  padding:2.2rem 0;
+  font-family:var(--sans);font-size:.85rem;
+}
+.pie__in{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
+
+/* ══ RESPONSIVE ══ */
+@media (max-width:900px){
+  .hero__cuerpo,.sec__cab,.zona__grid,.sobre__grid{grid-template-columns:1fr}
+  .puertas__in{grid-template-columns:1fr}
+  .puerta:first-child{border-right:0;border-bottom:1px solid var(--linea-oscura)}
+  .fila{grid-template-columns:2.5rem 1fr;row-gap:.8rem}
+  .fila__cuerpo{grid-column:1/-1}
+  .anillo{grid-template-columns:1fr;gap:.4rem}
+  .menu{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="rampa"></div>
+
+<header class="cab">
+  <div class="shell cab__in">
+    <a class="marca" href="/"><span class="marca__punto"></span>Aerorural</a>
+    <nav class="menu">
+      <a href="#industria">Energía e industria</a>
+      <a href="#monte">Monte y ganadería</a>
+      <a href="#topografia">Topografía</a>
+      <a href="#zona">Zona de trabajo</a>
+      <a href="#sobre">Sobre mí</a>
+      <a class="menu__wa" href="https://wa.me/34600000000">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="shell hero__in">
+    <p class="hero__loc">A Coruña · Toda Galicia</p>
+
+    <h1>Del monte<br>a la <em>industria</em></h1>
+
+    <div class="hero__cuerpo">
+      <div>
+        <p class="hero__lead">
+          Termografía e inspección técnica de instalaciones solares, eólicas e industriales.
+          Servicios con dron para ganadería extensiva: localización de ganado, revisión de
+          fincas y control del monte.
+        </p>
+        <p class="hero__remate">Vuelo para ahorrarte el tiempo que no tienes.</p>
+
+        <div class="hero__acciones">
+          <a class="btn btn--calor" href="https://wa.me/34600000000">Contactar por WhatsApp</a>
+          <a class="btn btn--linea" href="#industria">Ver servicios</a>
+        </div>
+      </div>
+
+      <div class="ficha">
+        <dl>
+          <div>
+            <dt>Equipo</dt>
+            <dd>DJI Matrice 4T · cámara térmica integrada</dd>
+          </div>
+          <div>
+            <dt>Habilitaciones</dt>
+            <dd>A1/A3 · A2 · STS-01 · STS-02</dd>
+          </div>
+          <div>
+            <dt>Base</dt>
+            <dd>A Coruña. Desplazamiento incluido en la mayoría de encargos.</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- Las dos puertas -->
+  <div class="puertas">
+    <div class="shell puertas__in">
+      <a class="puerta" href="#industria">
+        <p class="puerta__num">01</p>
+        <h2>Energía e industria</h2>
+        <p>Plantas fotovoltaicas, palas de aerogenerador y cubiertas de nave. Termografía que localiza el fallo sin subir a la cubierta ni parar la instalación.</p>
+        <span class="puerta__ir">Ver inspección técnica <span>→</span></span>
+      </a>
+      <a class="puerta" href="#monte">
+        <p class="puerta__num">02</p>
+        <h2>Monte y ganadería</h2>
+        <p>Ganado en extensivo, fincas y montes comunales, prevención de incendios y evaluación post-incendio. La misma cámara térmica, otro terreno.</p>
+        <span class="puerta__ir">Ver trabajos en el monte <span>→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ INDUSTRIA ═══════════ -->
+<section class="sec" id="industria">
+  <div class="shell">
+    <div class="sec__cab">
+      <div>
+        <p class="kicker kicker--calor">01 — Energía e industria</p>
+        <h2>Inspección térmica y técnica</h2>
+      </div>
+      <p>
+        Un panel averiado no se ve desde el suelo, pero calienta. Una grieta en una pala
+        tampoco, hasta que es cara. El dron llega antes y sin trabajos verticales.
+      </p>
+    </div>
+
+    <div class="filas">
+      <article class="fila">
+        <div class="fila__n">01</div>
+        <h3>Inspección de instalaciones fotovoltaicas</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            Termografía de paneles en plantas y autoconsumo sobre nave. Localizo puntos calientes,
+            módulos y strings averiados y conexiones defectuosas sin desconectar la instalación
+            ni subir a la cubierta.
+          </p>
+          <p class="fila__res"><b>Resultado</b>Mapa de incidencias por panel, con las zonas que pierden rendimiento.</p>
+        </div>
+      </article>
+
+      <article class="fila">
+        <div class="fila__n">02</div>
+        <h3>Inspección de palas de aerogenerador</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            Revisión con zoom de palas y góndola a distancia segura: grietas, erosión de borde
+            de ataque, delaminaciones y daños de rayo. Sin trabajos verticales.
+          </p>
+          <p class="fila__res"><b>Resultado</b>Estado de cada pala documentado y comparable año a año.</p>
+        </div>
+      </article>
+
+      <article class="fila">
+        <div class="fila__n">03</div>
+        <h3>Termografía de cubiertas y naves</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            Detección de humedades, filtraciones, aislamiento deficiente y pérdidas de calor
+            en cubiertas industriales, agrícolas y edificios.
+          </p>
+          <p class="fila__res"><b>Resultado</b>Zonas con humedad o fuga térmica marcadas sobre imagen real.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MONTE ═══════════ -->
+<section class="sec sec--niebla" id="monte">
+  <div class="shell">
+    <div class="sec__cab">
+      <div>
+        <p class="kicker kicker--calor">02 — Mundo rural</p>
+        <h2>Monte, ganadería e incendios</h2>
+      </div>
+      <p>
+        Aquí no vale una foto bonita. Vale saber dónde está el ganado antes de que anochezca
+        y tener las fajas medidas antes de que llegue el plazo.
+      </p>
+    </div>
+
+    <div class="filas">
+      <article class="fila">
+        <div class="fila__n">01</div>
+        <h3>Localización, recuento y desplazamiento de ganado en extensivo</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            La cámara térmica detecta animales en monte, sombras y vegetación densa donde a pie
+            se tardarían horas. Recuento y localización de reses perdidas en montes comunales y
+            fincas amplias. Recogida de ganado del monte a los cerramientos, cuadras y cargaderos.
+          </p>
+          <p class="fila__res"><b>Resultado</b>Dónde están tus animales en minutos. Recoger ganado sin esfuerzo.</p>
+        </div>
+      </article>
+
+      <article class="fila">
+        <div class="fila__n">02</div>
+        <h3>Revisión de fincas, vallados y puntos de agua</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            Inspección de perímetros, cierres, bebederos y accesos en fincas extensas,
+            identificando roturas y puntos débiles sin recorrer todo el terreno.
+          </p>
+          <p class="fila__res"><b>Resultado</b>Estado completo de la finca con las incidencias marcadas.</p>
+        </div>
+      </article>
+
+      <article class="fila">
+        <div class="fila__n">03</div>
+        <h3>Prevención de incendios: cartografía de fajas y biomasa</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            Mapeo de las fajas de gestión de biomasa y de las zonas de acumulación de vegetación,
+            para planificar la limpieza y documentar el cumplimiento de la normativa.
+          </p>
+          <p class="fila__res"><b>Resultado</b>Perímetros y superficies a desbrozar medidos y documentados.</p>
+        </div>
+      </article>
+
+      <article class="fila">
+        <div class="fila__n">04</div>
+        <h3>Evaluación post-incendio y control de rebrotes</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            Cartografía de la superficie afectada tras un incendio para dimensionar daños y,
+            con la cámara térmica, detección de rebrotes y puntos calientes una vez extinguido.
+          </p>
+          <p class="fila__res"><b>Resultado</b>Perímetro y daño del incendio medidos, y rebrotes localizados a tiempo.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TOPOGRAFÍA ═══════════ -->
+<section class="sec" id="topografia">
+  <div class="shell">
+    <div class="sec__cab">
+      <div>
+        <p class="kicker kicker--calor">03 — Medir desde el aire</p>
+        <h2>Topografía y cartografía aérea</h2>
+      </div>
+      <p>
+        Ortofotos y mediciones fiables para obra, canteras y trámites. Especialmente útil
+        donde la parcela es pequeña, irregular y difícil de recorrer.
+      </p>
+    </div>
+
+    <div class="filas">
+      <article class="fila">
+        <div class="fila__n">01</div>
+        <h3>Levantamientos y fotogrametría</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            Ortofotos, modelos del terreno y mediciones de superficie para obra, canteras,
+            movimientos de tierra y proyectos de autoconsumo solar.
+          </p>
+          <p class="fila__res"><b>Resultado</b>Plano y medidas fiables sin recorrer el terreno a pie.</p>
+        </div>
+      </article>
+
+      <article class="fila">
+        <div class="fila__n">02</div>
+        <h3>Cartografía de fincas y parcelas</h3>
+        <div class="fila__cuerpo">
+          <p class="fila__desc">
+            Imagen aérea georreferenciada para deslindes, gestión y documentación.
+            Especialmente útil en el minifundio gallego.
+          </p>
+          <p class="fila__res"><b>Resultado</b>La parcela vista y medida desde el aire, lista para trámites.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ZONA DE TRABAJO ═══════════ -->
+<section class="sec zona" id="zona">
+  <div class="shell zona__grid">
+    <div>
+      <p class="kicker" style="color:var(--calor)">Zona de trabajo</p>
+      <h2>Galicia</h2>
+      <p class="zona__intro">
+        Base en A Coruña. Trabajo en toda Galicia — A Coruña, Lugo, Pontevedra y Ourense —
+        con desplazamiento incluido en la mayoría de encargos.
+      </p>
+    </div>
+
+    <dl class="anillos">
+      <div class="anillo">
+        <dt>Zona habitual</dt>
+        <dd>Betanzos, Ferrol, Santiago, Costa da Morte y comarcas próximas, con disponibilidad rápida.</dd>
+      </div>
+      <div class="anillo">
+        <dt>Resto de Galicia</dt>
+        <dd>Parques eólicos, plantas solares, fincas y montes en cualquier provincia, planificando la visita.</dd>
+      </div>
+      <div class="anillo">
+        <dt>Fuera de Galicia</dt>
+        <dd>Para campañas de inspección que lo justifiquen (energía e industria), consúltame. Valoro desplazamientos al resto del norte peninsular y Portugal.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══════════ SOBRE MÍ ═══════════ -->
+<section class="sec sec--niebla sobre" id="sobre">
+  <div class="shell sobre__grid">
+    <div class="foto-hueco">
+      <b>Falta foto</b>
+      <span>Guillermo con el Matrice, en campo</span>
+    </div>
+    <div>
+      <p class="kicker">Sobre mí</p>
+      <h2>Guillermo Villalva</h2>
+      <p>
+        Piloto de drones con base en A Coruña. Trabajo solo: quien coge el teléfono es
+        quien vuela y quien te entrega el resultado.
+      </p>
+      <p style="color:var(--brasa);font-family:var(--sans);font-size:.92rem;font-weight:600">
+        ⚠︎ Pendiente: aquí va el texto real de Guillermo — de dónde viene, por qué el monte
+        y la industria, algún trabajo concreto con nombre y sitio.
+      </p>
+
+      <div class="sobre__cert">
+        <span class="cert">A1 / A3</span>
+        <span class="cert">A2</span>
+        <span class="cert">STS-01</span>
+        <span class="cert">STS-02</span>
+        <span class="cert">DJI Matrice 4T</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CIERRE ═══════════ -->
+<section class="cierre">
+  <div class="shell">
+    <h2>¿Lo miramos?</h2>
+    <p>
+      Cuéntame qué necesitas revisar y te digo si el dron lo resuelve, cuánto cuesta
+      y cuándo puedo ir. Sin compromiso.
+    </p>
+    <div class="hero__acciones">
+      <a class="btn btn--calor" href="https://wa.me/34600000000">Escribir por WhatsApp</a>
+      <a class="btn btn--linea" href="mailto:info@aerorural.es">info@aerorural.es</a>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="shell pie__in">
+    <span>Aerorural · Guillermo Villalva · A Coruña</span>
+    <span>Aviso legal · Privacidad · Cookies</span>
+  </div>
+</footer>
+
+</body>
+</html>
